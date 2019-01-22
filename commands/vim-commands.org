@@ -1,0 +1,74 @@
+* Track vim commands
+* Vim Issues
+** Can't use C-movement to leave netrw window
+
+* Vim splits
+** Open/Close
+   - C-w q # Close current window
+** Sizing
+   - C-w |   # max horz size
+   - C-w _   # max vert size
+   - C-w =   # normalize split sizes
+   - C-w >   # increase width
+   - C-w <   # decrease width
+   - C-w +   # increase height
+   - C-w -   # decrease height
+   - TODO: How to set pane size to a number
+** Change panes
+   - C-W R    # rotate panes up/left
+   - C-W r    # rotate panes down/right
+   - C-w x    # swap with window on the right
+   - C-W L    # move pane far right
+   - C-W H    # move pane far left
+   - C-W J    # move pane far bottom
+   - C-W K    # move pane far top
+   - :help window-moving
+** Layout
+   - C-W T    # break out split into new tab
+   - C-W o    # close all other windows (in current tab)
+* Searching, errors, and opening
+** How to search using the quickfix list?
+** How to find errors
+* NetRW
+** To open netrw
+   - :Explore - open in current folder
+   - :Sexplore - open in horz split
+   - :Vexplore - open in vert split
+** View options
+   - i - cycle view types
+   - let g:netrw_liststyle = 3  # set style 3
+   - let g:netrw_banner = 0     # disable banner
+   - let g:netrw_winsize = 25   # drawer size
+* NERDtree
+** Starting stopping
+   - :NERDTreeToggle
+** Opening files
+   - s      # open in new vert split
+   - i      # open in new horz split
+* File handling
+** How to open file in current folder?
+   - :Explore
+   - :e %:p:h <tab>
+* How to work with files in VIM
+** :set hidden
+      If you don't have this set already, then do so. It makes vim work like every
+      other multiple-file editor on the planet. You can have edited buffers that
+      aren't visible in a window somewhere.
+** Use :bn, :bp, :b #, :b name, and ctrl-6 to switch between buffers. I like
+      ctrl-6 myself (alone it switches to the previously used buffer, or #ctrl-6
+      switches to buffer number #).
+** Use :ls to list buffers, or a plugin like MiniBufExpl or BufExplorer.
+* Vim variables
+** :set shiftwidth=2          # set value
+** :setlocal shiftwidth=2     # set value for this buffer only
+** :set shiftwidth?           # show value
+** :verbose set shiftwidth?   # show where variable last set
+* Vim resources
+** Overall tips
+   - <https://www.cs.oberlin.edu/~kuperman/help/vim/home.html>
+
+
+
+
+
+

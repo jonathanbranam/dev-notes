@@ -1,0 +1,7 @@
+* Vim setup
+** General setup
+*** Install vim from homebrew
+** .vimrc listchars error
+*** Currently required to add to top of .vimrc from thoughtbots/dotfiles
+set encoding=utf-8
+scriptencoding utf-8

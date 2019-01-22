@@ -1,0 +1,6 @@
+* Tmux commands
+** Scrolling
+   - <prefix> [   # scrollback mode
+   - basic vim commands work
+   - C-f          # scroll down
+   - C-b          # scroll up

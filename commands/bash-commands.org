@@ -1,0 +1,10 @@
+* Bash command line notes
+** Command History
+   - C-p    # previous command
+   - C-n    # next command
+   - M-r    # revert changes to command
+** Command History Search
+   - C-r    # reverse command search
+   - C-o    # run command
+   - C-g    # exit search with command
+

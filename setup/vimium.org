@@ -1,0 +1,10 @@
+* Settings for Vimium
+** scroll with left hand only
+*** Map e to scroll up
+
+* Actual settings
+map e scrollPageUp
+map <c-f> LinkHints.activateModeToOpenInNewForegroundTab
+map w scrollUp
+map s scrollDown
+

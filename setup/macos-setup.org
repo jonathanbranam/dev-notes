@@ -1,0 +1,5 @@
+* Various dev macOS settings
+** TODO
+*** Bind shortcut to open screenshots directory
+*** Chrome shortcut to open Evernote
+

@@ -1,0 +1,36 @@
+* IPython commands
+** Newlines etc
+   - C-o        # add a blank line
+   - C-q C-J    # return without execute
+** vi moving
+   - -          # prev line first non-whitespace
+   - +          # next line first non-whitespace
+   - >>         # indent
+   - <<         # un-indent
+** History and search
+   - C-p        # previous command
+   - C-n        # next command
+   - C-r        # reverse history search
+** Previous cell contents
+   - In[-2]     # previous cell
+   - Out[13]    # output of cell 13
+   - Out[len(In)-2]   # output of prev cell
+   - _          # prev output
+   - __         # output of 2 cells before
+   - ___        # output of 3 cells before
+   - %history -n 1-4    # history lines 1-4
+** Edit keys
+   - C-d        # Delete next character in line
+   - C-k        # Cut text from cursor to end of line
+   - C-u        # Cut text from beginning of line to cursor
+   - C-y        # Yank (i.e. paste) text that was previously cut
+   - C-t        # Transpose (i.e., switch) previous two characters
+** vi editing mode
+$ ipython --TerminalInteractiveShell.editing_mode=vi
+or set:
+~/.ipython/profile_default/ipython_config.py
+c.TerminalInteractiveShell.editing_mode = 'vi'
+c.TerminalInteractiveShell.prompt_includes_vi_mode = False
+* vi mode source code
+https://github.com/prompt-toolkit/python-prompt-toolkit/blob/master/prompt_toolkit/key_binding/bindings/vi.py
+
