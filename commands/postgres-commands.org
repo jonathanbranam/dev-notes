@@ -1,0 +1,34 @@
+* Postgres commands
+** launch
+   - psql -U postgres
+** using variables
+   - \set foo bar
+   - \echo :foo
+** prompt customization
+   - original value:
+   - \set PROMPT1 '%[%033[1m%]%M %n@%/%R%[%033[0m%]%# '
+   - \set senv preprod
+   - \set PROMPT1 '%[%033[1m%]%:senv: %/%R%[%033[0m%]%# '
+** list things
+   - \l     # list databases
+   - \d     # list tables
+   - \dy    # list events
+   - \df    # list functions
+   - \di    # list indexes
+   - \dn    # list schemas
+   - \dv    # list views
+   - \du    # list users
+** database
+   - \c <database>    # connect to <database>
+   - \d <table>       # show table definition <table>
+   - \copy (SELECT * FROM _table_) TO 'filename.csv' WITH CSV   # export
+** history
+   - \g               # repeat last command
+   - \s               # display command history
+   - \s filename      # save command history to file
+   - \i filename      # run commands from file
+** timing
+   - \timing          # enable timing
+** editing
+   - \e     # invoke editor (vim)
+
