@@ -26,6 +26,21 @@
 ** Layout
    - C-W T    # break out split into new tab
    - C-W o    # close all other windows (in current tab)
+* Completions
+  - C-n         # next completion
+  - <tab>       # next completion
+  - C-p         # prev completion
+  - shift-<tab> # prev completion
+  - C-y         # accept completion
+  - C-e         # cancel completion
+* vim-surround
+  - cs"'        # change " to '
+  - cs'<q>      # change ' to <q></q>
+  - cst"        # change <q> to "
+  - ds"         # delete surround "
+  - ysiw]       # add ] arround iw word
+  - ysiw[       # add [  ] with space
+
 * Searching, errors, and opening
 ** How to search using the quickfix list?
 ** How to find errors
@@ -42,6 +57,8 @@
 * NERDtree
 ** Starting stopping
    - :NERDTreeToggle
+** Modify files/directories
+   - m      # menu - create file
 ** Opening files
    - s      # open in new vert split
    - i      # open in new horz split
