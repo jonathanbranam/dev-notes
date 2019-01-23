@@ -4,3 +4,18 @@
    - basic vim commands work
    - C-f          # scroll down
    - C-b          # scroll up
+** Windows
+   - w            # display windows and pane preview
+** Moving between panes
+   - hjkl           # vim movements
+   - :selectpane n  # select pane n
+   - q              # :display-panes - press number to switch
+** Swapping Panes
+   - q              # :display-panes
+   - {              # :swap-pane -U
+   - }              # :swap-pane -D
+   - :swap-pane -s 3 -t 5  # swap panes 3 and 5
+   - +              # break pane into window (working?)
+   - -              # restore pane from window (working?)
+** Sizing panes
+   - :resize-pane -UDLR n
