@@ -1,0 +1,5 @@
+* Charting notes
+** Matplotlib / Seaborn
+*** Legend placement
+**** Legend on the right
+plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)

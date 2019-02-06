@@ -1,0 +1,4 @@
+* Python stuff
+** List methods
+dir(object)
+

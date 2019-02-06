@@ -1,0 +1,88 @@
+* SQLAlchemy
+** Documentation
+   - https://docs.sqlalchemy.org/en/latest/
+** Connection
+*** Postgres
+from sqlalchemy import create_engine
+engine = create_engine('postgresql://scott:tiger@localhost:5432/mydatabase')
+*** SQLite memory DB
+from sqlalchemy import create_engine
+engine = create_engine('sqlite:///:memory:', echo=True)
+** Describing tables example
+from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey
+metadata = MetaData()
+users = Table('users', metadata,
+    Column('id', Integer, primary_key=True),
+    Column('name', String),
+    Column('fullname', String),
+)
+
+addresses = Table('addresses', metadata,
+  Column('id', Integer, primary_key=True),
+  Column('user_id', None, ForeignKey('users.id')),
+  Column('email_address', String, nullable=False)
+)
+metadata.create_all(engine)
+** Insert example
+*** Step-by-step
+ins = users.insert()
+str(ins)
+# 'INSERT INTO users (id, name, fullname) VALUES (:id, :name, :fullname)'
+ins = users.insert().values(name='jack', fullname='Jack Jones')
+str(ins)
+# 'INSERT INTO users (name, fullname) VALUES (:name, :fullname)'
+conn = engine.connect()
+conn
+result = conn.execute(ins)
+ins.bind = engine
+str(ins)
+# 'INSERT INTO users (name, fullname) VALUES (?, ?)'
+result.inserted_primary_key
+# [1]
+*** More direct
+ins = users.insert()
+conn.execute(ins, id=2, name='wendy', fullname='Wendy Williams')
+*** Insert many
+conn.execute(addresses.insert(), [
+   {'user_id': 1, 'email_address' : 'jack@yahoo.com'},
+   {'user_id': 1, 'email_address' : 'jack@msn.com'},
+   {'user_id': 2, 'email_address' : 'www@www.org'},
+   {'user_id': 2, 'email_address' : 'wendy@aol.com'},
+])
+** Select example
+from sqlalchemy.sql import select
+s = select([users])
+result = conn.execute(s)
+for row in result:
+    print(row)
+result = conn.execute(s)
+row = result.fetchone()
+print("name:", row['name'], "; fullname:", row['fullname'])
+# name: jack ; fullname: Jack Jones
+row = result.fetchone()
+print("name:", row[1], "; fullname:", row[2])
+# name: wendy ; fullname: Wendy Williams
+for row in conn.execute(s):
+    print("name:", row[users.c.name], "; fullname:", row[users.c.fullname])
+# name: jack ; fullname: Jack Jones
+# name: wendy ; fullname: Wendy Williams
+# Don't forget to close the results object
+results.close()
+*** Select certain columns
+s = select([users.c.name, users.c.fullname])
+result = conn.execute(s)
+for row in result:
+    print(row)
+# (u'jack', u'Jack Jones')
+# (u'wendy', u'Wendy Williams')
+*** Joining tables
+# Cartesian product -> BAD
+for row in conn.execute(select([users, addresses])):
+    print(row)
+s = select([users, addresses]).where(users.c.id == addresses.c.user_id)
+for row in conn.execute(s):
+    print(row)
+# (1, u'jack', u'Jack Jones', 1, 1, u'jack@yahoo.com')
+# (1, u'jack', u'Jack Jones', 2, 1, u'jack@msn.com')
+# (2, u'wendy', u'Wendy Williams', 3, 2, u'www@www.org')
+# (2, u'wendy', u'Wendy Williams', 4, 2, u'wendy@aol.com')
