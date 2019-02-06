@@ -1,0 +1,10 @@
+* Elixir basics
+** Official documentation
+https://hexdocs.pm/elixir
+** iex load file/module
+*** load a file
+import_file("relative/path/to/file.ex")
+*** load a file 2
+c "SomeModule.exs"
+*** reload module
+r MyModule
