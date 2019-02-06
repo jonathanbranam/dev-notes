@@ -5,7 +5,14 @@
    - C-f          # scroll down
    - C-b          # scroll up
 ** Windows
-   - w            # display windows and pane preview
+   - c        # new window
+   - n        # next window
+   - p        # prev window
+   - w        # display windows and pane preview
+   - ,        # name window
+   - f        # find window
+   - &        # kill window
+   - .        # move window
 ** Moving between panes
    - hjkl           # vim movements
    - :selectpane n  # select pane n

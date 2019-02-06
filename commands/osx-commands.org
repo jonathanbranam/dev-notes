@@ -1,0 +1,11 @@
+* OS X commands
+** Read/write Keychain from command line
+*** Commands
+security add-generic-password -a $USER -s preprod.relationship-analyzer.username ~/Library/Keychains/sigstr-creds.keychain-db
+# Somehow adding -w doesn't work because the keychain filename has to be last
+security add-generic-password -a $USER -s preprod.relationship-analyzer.username -w
+security find-generic-password -a $USER -s preprod.relationship-analyzer.username -w {keychain}
+security find-generic-password -a $USER -s preprod.relationship-analyzer.password -w {keychain}
+*** Links
+https://www.netmeister.org/blog/keychain-passwords.html
+

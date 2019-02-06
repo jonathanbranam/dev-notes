@@ -2,6 +2,21 @@
 * Vim Issues
 ** Can't use C-movement to leave netrw window
 
+* Buffers
+  - :new      # open new horz buffer
+  - :enew     # open new buffer in current window
+* Search
+  - :noh      # cancel search highlight
+* Spelling
+  - :setl spell   # enable spell checking
+  - zg            # add word to spellfile
+  - zw            # mark as wrong spelling in spellfile
+  - z=            # get suggestions
+  - C-X s         # get suggestions in insert mode
+  - ]s            # next misspelled word
+  - [s            # prev misspelled word
+  - zug           # remove word from spellfile
+  - zuw           # remove wrong spelling
 * Vim splits
 ** Open/Close
    - C-w q # Close current window
@@ -41,27 +56,53 @@
   - ysiw]       # add ] arround iw word
   - ysiw[       # add [  ] with space
 
+* changing case
+  - crs         # to snake_case
+  - crm         # to MakedCase
+  - crc         # to camelCase
+  - cru         # to UPPER_CASE
+  - cr-         # to dash-case
+  - cr.         # to dot.case
+  - cr<space>   # to space case
+  - crt         # to Title Case
 * Searching, errors, and opening
 ** How to search using the quickfix list?
 ** How to find errors
 * NetRW
 ** To open netrw
-   - :Explore - open in current folder
-   - :Sexplore - open in horz split
-   - :Vexplore - open in vert split
+   - :Explore     # open in current folder
+   - :Sexplore    # open in horz split
+   - :Vexplore    # open in vert split
 ** View options
-   - i - cycle view types
+   - i                          # cycle view types
    - let g:netrw_liststyle = 3  # set style 3
    - let g:netrw_banner = 0     # disable banner
    - let g:netrw_winsize = 25   # drawer size
+** Files
+   - %        # create new file
 * NERDtree
 ** Starting stopping
    - :NERDTreeToggle
 ** Modify files/directories
    - m      # menu - create file
 ** Opening files
+   - o      # open file
    - s      # open in new vert split
    - i      # open in new horz split
+   - g*     # open but leave cursor in NERDTree
+** Directories
+   - O      # recursively open directory
+   - x      # close parent
+   - X      # recursive close all children
+   - e      # edit the current dir
+** Root directory
+   - P      # jump to root
+   - p      # move to parent
+   - K      # jump up inside directories at this depth
+   - J      # jump down inside directories at this depth
+   - C      # set dir as tree root
+   - u      # move tree root up one
+   - U      # u and leave old root open
 * File handling
 ** How to open file in current folder?
    - :Explore
@@ -75,14 +116,65 @@
       ctrl-6 myself (alone it switches to the previously used buffer, or #ctrl-6
       switches to buffer number #).
 ** Use :ls to list buffers, or a plugin like MiniBufExpl or BufExplorer.
+* Vim distraction free
+** Manually
+   - :vnew            # empty buffer new vert split
+   - :new             # empty buffer new horz split
+   - :enew            # empty buffer
+   - :setl nonumber   # remove line numbers
+   - C-W r    # rotate panes down/right
+   - C-w x    # swap with window on the right
+   - C-W H    # move pane far left
 * Vim variables
-** :set shiftwidth=2          # set value
-** :setlocal shiftwidth=2     # set value for this buffer only
-** :set shiftwidth?           # show value
-** :verbose set shiftwidth?   # show where variable last set
+  - set shiftwidth=2          # set value
+  - setlocal shiftwidth=2     # set value for this buffer only
+  - set shiftwidth?           # show value
+  - verbose set shiftwidth?   # show where variable last set
+  - set shiftwidth&           # restore default
+  - setlocal shiftwidth&      # restore default
+* vim-orgmode
+** jceb/vim-orgmode
+https://github.com/jceb/vim-orgmode
+** tabs and stuff
+  - <TAB>         # cycle visibility
+  - <CR>          # (normal mode) insert heading below
+  - >> or >ah     # lower heading
+  - << or <ah     # raise heading
+  - >ar           # lower entire subtree
+  - <ar           # raise entire subtree
+  - m}            # move heading up
+  - m{            # move heading down
+  - yah           # yank heading
+  - dah           # delete heading
+  - yar           # yank subtree
+  - dar           # delete subtree
+** links
+  - gl            # goto link
+  - gyl           # yank link
+  - gil           # insert new link
+  - gn            # next link
+  - go            # previous link
+** todo
+  - <ll>d         # open todo labeling window
+  - <ll>dt        # set TODO
+  - <ll>dd        # set DONE
+** timing
+  - <ll>sa        # insert timestamp
+  - <ll>si        # insert [inactive] timestamp
+  - C-a           # increment timestamp value
+  - C-x           # decrement timestamp value
+  - <ll>pa        # insert timestamp with calendar
+  - <ll>pi        # insert [inactive] timestamp with calendar
+  
+
 * Vim resources
 ** Overall tips
    - <https://www.cs.oberlin.edu/~kuperman/help/vim/home.html>
+** Grep and search
+   - https://robots.thoughtbot.com/faster-grepping-in-vim
+   - https://seesparkbox.com/foundry/demystifying_multi_file_searches_in_vim_and_the_command_line
+
+
 
 
 

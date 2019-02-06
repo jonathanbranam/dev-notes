@@ -31,4 +31,9 @@
    - \timing          # enable timing
 ** editing
    - \e     # invoke editor (vim)
+** Official documentation
+https://www.postgresql.org/docs/10/index.html
+** Cheat Sheets
+https://gist.github.com/Kartones/dd3ff5ec5ea238d4c546
+
 
