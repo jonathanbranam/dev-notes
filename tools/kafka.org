@@ -1,0 +1,28 @@
+* Kafka
+** Kafka setup
+   - brew install fop  # for erlang docs
+   - asdf install erlang 21.2.3
+   - asdf install kafka 1.8.0
+** Kafka resources
+*** Official Documentation
+https://kafka.apache.org/documentation/
+*** Cheat Sheets
+https://ronnieroller.com/kafka/cheat-sheet
+*** Consumer offsets:
+https://www.sderosiaux.com/articles/2017/08/07/looking-at-kafka-s-consumers-offsets/
+** interact with kafka
+*** Lag info
+./kafka-run-class.sh kafka.admin.ConsumerGroupCommand --bootstrap-server
+kafka1-prod.prod.sigstr.net:9092 --new-consumer --group license-manager
+--describe
+*** Open console to type messages
+kafka-console-producer.sh --broker-list localhost:9092 --topic events.mutate
+*** Describe kafka topic
+kafka-topics.sh --list --zookeeper zookeeper:2181
+kafka-topics.sh --describe --zookeeper zookeeper:2181 --topic events.mutate
+*** Manually added configs
+kafka-configs.sh --zookeeper zookeeper:2181 --entity-type topics --entity-name events.mutate --describe
+kafka-configs.sh --zookeeper zookeeper:2181 --alter --entity-type topics --entity-name events.mutate --add-config retention.ms=1000
+sleep 90
+kafka-configs.sh --zookeeper zookeeper:2181 --alter --entity-type topics --entity-name events.mutate --delete-config retention.ms
+
