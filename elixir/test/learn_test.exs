@@ -184,4 +184,16 @@ end
   end
 
 
+  test "Enum.each on struct" do
+    k = [
+      [a: 1, b: 1],
+      [a: 2, b: 2],
+      [a: 1, b: 3],
+    ]
+    r = k |> Enum.group_by(fn i -> i[:a] end)
+    # Enum.each throws out the return value so... not sure how to test better
+    assert :ok == r |> Enum.each(fn {v, as} -> length(as) end)
+  end
+
+
 end
