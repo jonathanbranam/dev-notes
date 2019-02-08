@@ -2,6 +2,8 @@ defmodule LearnTest do
   use ExUnit.Case
   doctest Learn
 
+  alias Enum
+
   test "add some numbers" do
     assert Learn.add() == 3
   end
@@ -167,5 +169,19 @@ end
     end
 
   end
+
+  test "Enum.group_by" do
+    k = [
+      [a: 1, b: 1],
+      [a: 2, b: 2],
+      [a: 1, b: 3],
+    ]
+    r = k |> Enum.group_by(fn i -> i[:a] end)
+    a1 = r[1]
+    a2 = r[2]
+    assert a1 == [[a: 1, b: 1], [a: 1, b: 3]]
+    assert a2 == [[a: 2, b: 2]]
+  end
+
 
 end
