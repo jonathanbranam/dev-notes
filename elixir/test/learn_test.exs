@@ -192,8 +192,108 @@ end
     ]
     r = k |> Enum.group_by(fn i -> i[:a] end)
     # Enum.each throws out the return value so... not sure how to test better
-    assert :ok == r |> Enum.each(fn {v, as} -> length(as) end)
+    assert :ok == r |> Enum.each(fn {_v, as} -> length(as) end)
   end
 
+  test "simple list concat" do
+    a = [1, 2, 3]
+    b = [4, 5, 6]
+    assert a ++ b == [1, 2, 3, 4, 5, 6]
+  end
+
+  test "list concat dups" do
+    a = [1, 2, 3]
+    b = [3, 2, 6]
+    assert a ++ b == [1, 2, 3, 3, 2, 6]
+  end
+
+  test "Enum.reduce add" do
+    a = [1, 2, 3, 4]
+    b = a |> Enum.reduce(0, fn i, r -> i + r end)
+    assert b == 10
+  end
+
+  test "Enum.reduce build list" do
+    a = [1, 2, 3, 4]
+    b = a |> Enum.reduce([], fn i, r -> r ++ [-i] end)
+    assert b == [-1, -2, -3, -4]
+  end
+
+  test "Enum.reduce nested" do
+    a = [1, 2, 3, 4]
+    b = Enum.reduce(a, [], fn i, r ->
+      r ++
+        Enum.reduce(a, r, fn j, r ->
+          [{i, j} | r]
+        end)
+    end)
+    #assert b == [-4, -3, -2, -1]
+  end
+
+  test "Enum.reduce nested with filter" do
+    # you can't def inside a test
+    nested_reduce = fn a ->
+      Enum.reduce(Enum.filter(a, &(&1 == 1)), [], fn i, r ->
+        r ++
+          Enum.reduce(Enum.filter(a, &(&1 != 1)), r, fn j, r ->
+            [{i, j} | r]
+          end)
+      end)
+    end
+    # Because the first reduce only matches a single element in a, the body of
+    # the reduce will only be executed once which avoids the possible
+    # compounding problem
+    b = nested_reduce.([1, 2, 3, 4])
+    assert b == [{1, 4}, {1, 3}, {1, 2}]
+
+    # If we pass an array with two matching elements then we get a duplicate of
+    # the first result of the inner reduce and end up with 3 copies instead of
+    # 2.
+    b = nested_reduce.([1, 1, 2, 3, 4])
+    # This is not what we wanted: we get an extra copy because r is passed as
+    # the accumulator to the nested reduce()
+    assert b == [
+      {1, 4}, {1, 3}, {1, 2},
+      {1, 4}, {1, 3}, {1, 2},
+      {1, 4}, {1, 3}, {1, 2},
+    ]
+  end
+
+  test "Enum.reduce nested with filter fixing double concat" do
+    nested_reduce = fn a ->
+      Enum.reduce(Enum.filter(a, &(&1 == 1)), [], fn i, r ->
+        Enum.reduce(Enum.filter(a, &(&1 != 1)), r, fn j, r ->
+          [{i, j} | r]
+        end)
+      end)
+    end
+    b = nested_reduce.([1, 2, 3, 4])
+    assert b == [{1, 4}, {1, 3}, {1, 2}]
+
+    b = nested_reduce.([1, 1, 2, 3, 4])
+    assert b == [
+      {1, 4}, {1, 3}, {1, 2},
+      {1, 4}, {1, 3}, {1, 2},
+    ]
+  end
+
+  test "Enum.reduce nested with filter fixing double concat 2" do
+    nested_reduce = fn a ->
+      Enum.reduce(Enum.filter(a, &(&1 == 1)), [], fn i, r ->
+        r ++
+          Enum.reduce(Enum.filter(a, &(&1 != 1)), [], fn j, r ->
+            [{i, j} | r]
+          end)
+      end)
+    end
+    b = nested_reduce.([1, 2, 3, 4])
+    assert b == [{1, 4}, {1, 3}, {1, 2}]
+
+    b = nested_reduce.([1, 1, 2, 3, 4])
+    assert b == [
+      {1, 4}, {1, 3}, {1, 2},
+      {1, 4}, {1, 3}, {1, 2},
+    ]
+  end
 
 end
