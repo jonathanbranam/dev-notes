@@ -134,7 +134,7 @@
   - setlocal shiftwidth&      # restore default
 * vim-orgmode
 ** jceb/vim-orgmode
-https://github.com/jceb/vim-orgmode
+  - https://github.com/jceb/vim-orgmode
 ** tabs and stuff
   - <TAB>         # cycle visibility
   - <CR>          # (normal mode) insert heading below
@@ -158,6 +158,7 @@ https://github.com/jceb/vim-orgmode
   - <ll>d         # open todo labeling window
   - <ll>dt        # set TODO
   - <ll>dd        # set DONE
+  - <ll>ct        # next TODO state
 ** timing
   - <ll>sa        # insert timestamp
   - <ll>si        # insert [inactive] timestamp
@@ -165,7 +166,7 @@ https://github.com/jceb/vim-orgmode
   - C-x           # decrement timestamp value
   - <ll>pa        # insert timestamp with calendar
   - <ll>pi        # insert [inactive] timestamp with calendar
-  
+
 
 * Vim resources
 ** Overall tips

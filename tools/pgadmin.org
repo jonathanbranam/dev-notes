@@ -1,0 +1,13 @@
+* pgAdmin Postgres admin
+** Website:
+   - <https://www.pgadmin.org/>
+** Run in docker
+*** Docker hub
+    - <https://hub.docker.com/r/dpage/pgadmin4/>
+*** Commands
+docker pull dpage/pgadmin4
+docker run -p 9299:80 \
+    -e "PGADMIN_DEFAULT_EMAIL=noone@nothing.com" \
+    -e "PGADMIN_DEFAULT_PASSWORD=awesomesauce" \
+    -d dpage/pgadmin4
+** Also can run python locally
