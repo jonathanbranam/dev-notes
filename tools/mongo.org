@@ -1,0 +1,48 @@
+* Mongo info
+** Documentation
+  - Mongo method reference
+    https://docs.mongodb.com/manual/reference/method/
+  - db.collection.find
+    https://docs.mongodb.com/manual/reference/method/db.collection.find/
+  - Cursor iteration
+    https://docs.mongodb.com/manual/tutorial/iterate-a-cursor/
+  - Aggregation
+    https://docs.mongodb.com/manual/aggregation/
+** Mongo shell
+*** Connect command
+mongo --host host:27017 --username username --password password --authenticationDatabase admin
+*** Counting
+# Count all records
+db.companies.count()
+*** Find records
+find() returns a cursor. findOne() returns the first match.
+Assigning using var suppresses screen output.
+
+var comp_ids = db.companies.find({},{_id: 1})
+
+The second parameter selects only certain properties.
+
+# Find the company whose name matches the regexp and get name, _id, subdomain
+var google = db.companies.findOne({"name": {$regex: "^Google"}}, {name: 1, _id: 1, subdomain: 1}) 
+
+
+You can map over the cursor to transform data:
+
+var comp_keys = comp_ids.map(function (o) {return "company-"+o._id})
+
+*** Aggregation
+
+Find all documents that are in the comp_keys array and sum the displays and
+clicks properties.
+
+db.engagements.aggregate({$match: {_id: {$in: comp_keys}}}, {$group: {_id: "hi", total_displays: { $sum: "$displays" }, total_clicks: { $sum: "$clicks" }}})
+
+*** JavaScript
+You can use JavaScript stuff
+
+# Grab first five elements of the array
+five_ids = comp_keys.slice(0, 5)
+
+# Map over a cursor to transform the results.
+var comp_keys = comp_ids.map(function (o) {return "company-"+o._id})
+
