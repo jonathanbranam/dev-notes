@@ -7,6 +7,13 @@
   - :enew     # open new buffer in current window
 * Search
   - :noh      # cancel search highlight
+** Regexp
+  - \@=       # positive lookahead
+  - \@!       # negative lookahead
+  - \@<=      # positive lookbehind
+  - \@<!      # negative lookbehind
+  - :\@<!math   # all math not preceded by :
+  - pane\>\@!   # pane not followed by a word break
 * Spelling
   - :setl spell   # enable spell checking
   - zg            # add word to spellfile
@@ -29,18 +36,26 @@
    - C-w +   # increase height
    - C-w -   # decrease height
    - TODO: How to set pane size to a number
-** Change panes
-   - C-W R    # rotate panes up/left
-   - C-W r    # rotate panes down/right
+** Navigate panes
+   - C-w p    # goto previous window
+   - C-w t    # goto top-left window
+   - C-w b    # goto bottom-right window
+   - C-w h    # move the (n-th) window to the left
+   - C-w l    # move the (n-th) window to the right
+   - C-w k    # move the (n-th) window up
+   - C-w j    # move the (n-th) window down
+** Change layout
+   - C-w R    # rotate panes up/left
+   - C-w r    # rotate panes down/right
    - C-w x    # swap with window on the right
-   - C-W L    # move pane far right
-   - C-W H    # move pane far left
-   - C-W J    # move pane far bottom
-   - C-W K    # move pane far top
+   - C-w L    # move pane far right
+   - C-w H    # move pane far left
+   - C-w J    # move pane far bottom
+   - C-w K    # move pane far top
    - :help window-moving
 ** Layout
-   - C-W T    # break out split into new tab
-   - C-W o    # close all other windows (in current tab)
+   - C-w T    # break out split into new tab
+   - C-w o    # close all other windows (in current tab)
 * Completions
   - C-n         # next completion
   - <tab>       # next completion
@@ -107,6 +122,11 @@
 ** How to open file in current folder?
    - :Explore
    - :e %:p:h <tab>
+** Open file under cursor
+  - gf      # open file under cursor; won't open missing file
+  - gl      # open file/link under cursor; will open missing file utl.vim
+** Copy filename and line number to system clipboard
+   - :let @+=expand("%") . ':' . line(".")
 * How to work with files in VIM
 ** :set hidden
       If you don't have this set already, then do so. It makes vim work like every

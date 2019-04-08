@@ -8,6 +8,8 @@
    - c        # new window
    - n        # next window
    - p        # prev window
+   - 0..9     # move to window [0..9]
+   - l        # switch to last window
    - w        # display windows and pane preview
    - ,        # name window
    - f        # find window
@@ -26,3 +28,8 @@
    - -              # restore pane from window (working?)
 ** Sizing panes
    - :resize-pane -UDLR n
+** Manual pane command
+   - Move to a spanning horizontal pane at the top
+    :split-window -vfb  # create new spanning pane above this one
+    :swap-pane -D       # from the new pane, works if target is next pane
+    then close the new pane you don't want
