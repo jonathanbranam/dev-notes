@@ -17,6 +17,30 @@ defmodule LearnTest do
 
   end
 
+  test "float notation" do
+    # WRONG 1e2
+    # WRONG 1.e2
+    # RIGHT:
+    assert 1.0e2 == 100
+    assert 0.1e2 == 10
+  end
+
+  test "asserting with a delta" do
+    assert_in_delta 0.1 + 0.1, 0.200001, 0.0001
+  end
+
+  test "date literal sigil" do
+    assert ~D[2019-03-04] == ~D[2019-03-04]
+    assert ~D[2019-12-21] == %Date{year: 2019, month: 12, day: 21}
+  end
+
+  test "datetime literal sigil" do
+    # ~N creates a NaiveDateTime with no timezone attached
+    assert ~N[2019-03-04 03:12:00] == ~N[2019-03-04 03:12:00]
+    assert ~N[2019-03-04 03:12:00] == %NaiveDateTime{year: 2019, month: 3, day: 4,
+      hour: 3, minute: 12, second: 0}
+  end
+
   test "basic types" do
     assert is_number(1)
   end
@@ -170,6 +194,12 @@ end
 
   end
 
+  test "Enum.map" do
+    k = [1, 2, 3, 4]
+    r = k |> Enum.map(fn i -> i * 2 end)
+    assert r == [2, 4, 6, 8]
+  end
+
   test "Enum.group_by" do
     k = [
       [a: 1, b: 1],
@@ -182,7 +212,6 @@ end
     assert a1 == [[a: 1, b: 1], [a: 1, b: 3]]
     assert a2 == [[a: 2, b: 2]]
   end
-
 
   test "Enum.each on struct" do
     k = [
@@ -207,6 +236,15 @@ end
     assert a ++ b == [1, 2, 3, 3, 2, 6]
   end
 
+  test "default arguments" do
+    # def defarg(x, e \\ 2) do
+    #   :math.pow(x, e)
+    # end
+    assert Learn.defarg(3) == 9
+    assert Learn.defarg(3, 2) == 9
+    assert Learn.defarg(3, 3) == 27
+  end
+
   test "Enum.reduce add" do
     a = [1, 2, 3, 4]
     b = a |> Enum.reduce(0, fn i, r -> i + r end)
@@ -220,14 +258,14 @@ end
   end
 
   test "Enum.reduce nested" do
-    a = [1, 2, 3, 4]
+    a = [1, 2]
     b = Enum.reduce(a, [], fn i, r ->
       r ++
         Enum.reduce(a, r, fn j, r ->
           [{i, j} | r]
         end)
     end)
-    #assert b == [-4, -3, -2, -1]
+    assert b == [{1, 2}, {1, 1}, {2, 2}, {2, 1}, {1, 2}, {1, 1}]
   end
 
   test "Enum.reduce nested with filter" do

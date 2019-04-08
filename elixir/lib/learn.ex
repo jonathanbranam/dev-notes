@@ -16,4 +16,8 @@ defmodule Learn do
     1 + 2
   end
 
+  def defarg(x, e \\ 2) do
+    :math.pow(x, e)
+  end
+
 end
