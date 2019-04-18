@@ -33,3 +33,6 @@
     :split-window -vfb  # create new spanning pane above this one
     :swap-pane -D       # from the new pane, works if target is next pane
     then close the new pane you don't want
+** Clear history and screen
+  - :clear-history
+  - bind -n C-k clear-history

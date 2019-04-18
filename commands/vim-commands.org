@@ -3,10 +3,42 @@
 ** Can't use C-movement to leave netrw window
 
 * Buffers
+** opening
   - :new      # open new horz buffer
   - :enew     # open new buffer in current window
-* Search
+** selecting
+  - :b#         # switch to other buffer (can open closed buffers)
+  - :ls         # list buffers
+  - :b<num>     # open buffer <num>
+  - :bp         # open previous buffer
+  - :bn         # open next buffer
+** deleting
+  - :bd#      # delete other buffer
+  - :bw#      # wipeout other buffer
+  - maybe try this plugin: https://github.com/moll/vim-bbye
+* Moving around
+** Screen position
+  - zt        # current line to top
+  - zz        # current line to middle
+  - zb        # current line to bottom
+  - z<CR>     # current line to top (cursor to beg of line)
+  - z.        # current line to middle (cursor to beg of line)
+  - z-        # current line to bottom (cursor to beg of line)
+  - C-y       # scroll up w/o moving cursor
+  - C-e       # scroll down w/o moving cursor
+  - H         # move cursor to top
+  - M         # move cursor to middle
+  - L         # move cursor to bottom (last line)
+* Search & Replace
+** Highlighting
   - :noh      # cancel search highlight
+** Replace
+  - :[range]s/search/replace/g
+  - :s/search/replace/          # single line, first matches
+  - :s/search/replace/g         # single line, all matches
+  - :%s/search/replace/g        # entire file, all matches
+  - :8,10 s/search/replace/g    # lines 8-10, all matches
+  - :%s/search/replace/gc       # ask for confirmation
 ** Regexp
   - \@=       # positive lookahead
   - \@!       # negative lookahead
@@ -56,6 +88,8 @@
 ** Layout
    - C-w T    # break out split into new tab
    - C-w o    # close all other windows (in current tab)
+* Formatting / Layout
+  - gq        # reformat selection for line breaks
 * Completions
   - C-n         # next completion
   - <tab>       # next completion
@@ -136,6 +170,18 @@
       ctrl-6 myself (alone it switches to the previously used buffer, or #ctrl-6
       switches to buffer number #).
 ** Use :ls to list buffers, or a plugin like MiniBufExpl or BufExplorer.
+
+** Buffer manipulation
+  - :bp       # previous buffer in numeric order
+  - :bn       # next buffer in numeric order
+  - :ls       # list buffers (not hidden ones)
+  - :b<n>     # open buffer <n>
+  - :b#       # last used buffer
+  - :bd#      # delete (last) buffer - still in history
+  - :bw#      # wipeout (last) buffer - totally get rid of it
+  - :%bd      # delete all buffers - opens a new empty buffer
+  - :%bd:e#   # delete all buffers, reopen last file
+  - :%bd:e#:bd#   # delete all buffers, reopen last file, close empty buffer
 * Vim distraction free
 ** Manually
    - :vnew            # empty buffer new vert split
@@ -155,6 +201,7 @@
 * vim-orgmode
 ** jceb/vim-orgmode
   - https://github.com/jceb/vim-orgmode
+** localleader <ll>: ,
 ** tabs and stuff
   - <TAB>         # cycle visibility
   - <CR>          # (normal mode) insert heading below
