@@ -46,6 +46,12 @@
   - \@<!      # negative lookbehind
   - :\@<!math   # all math not preceded by :
   - pane\>\@!   # pane not followed by a word break
+** Multiline search
+  - \n    a newline character (line ending)
+  - \_s    a whitespace (space or tab) or newline character
+  - \_^    the beginning of a line (zero width)
+  - \_$    the end of a line (zero width)
+  - \_.    any character including a newline
 * Spelling
   - :setl spell   # enable spell checking
   - zg            # add word to spellfile
@@ -204,13 +210,15 @@
 ** localleader <ll>: ,
 ** tabs and stuff
   - <TAB>         # cycle visibility
+  - S-<TAB>       # reverse cycle visibility
+  - <ll>, / .     # cycle global visibility
   - <CR>          # (normal mode) insert heading below
   - >> or >ah     # lower heading
   - << or <ah     # raise heading
-  - >ar           # lower entire subtree
-  - <ar           # raise entire subtree
-  - m}            # move heading up
-  - m{            # move heading down
+  - >ar <[[       # lower entire subtree
+  - <ar >]]       # raise entire subtree
+  - m} m{         # move heading up/down (not subtree)
+  - m[\[ m]]       # move subtree up/down
   - yah           # yank heading
   - dah           # delete heading
   - yar           # yank subtree
@@ -226,6 +234,8 @@
   - <ll>dt        # set TODO
   - <ll>dd        # set DONE
   - <ll>ct        # next TODO state
+** agenda
+  - <ll>cat       # global TODO list
 ** timing
   - <ll>sa        # insert timestamp
   - <ll>si        # insert [inactive] timestamp
@@ -233,8 +243,26 @@
   - C-x           # decrement timestamp value
   - <ll>pa        # insert timestamp with calendar
   - <ll>pi        # insert [inactive] timestamp with calendar
+** movement
+  - }, {          # next/prev heading
+  - ]], [[        # next/prev heading same level
+  - g{, g}        # up/down heading hierarchy
+** checkboxes
+  - <ll>cn cN     # insert checkbox below (above)
+  - <ll>cc        # toggle checkbox
 
 
+* Vim Tmux integrations
+** https://github.com/jebaum/vim-tmuxify
+  - <l>mp         # associate tmux pane with vim by number 0:9.2
+  - <l>ms         # send selection to pane (or prompt)
+  - <l>mk         # TxRun (like make)
+  - <l>mt         # TxSetRunCmd (set make command for filetype % filepath)
+  - <l>mc         # clear target pane
+  - <l>mb         # send SIGINT to target pane
+  - <l>mn         # create target pane
+  - <l>mq         # close target pane
+  - <l>mr         # send-keys to target pane
 * Vim resources
 ** Overall tips
    - <https://www.cs.oberlin.edu/~kuperman/help/vim/home.html>
