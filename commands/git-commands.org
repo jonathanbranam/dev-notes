@@ -1,0 +1,7 @@
+* Git stuff
+** Search commit history
+Search the diff of every commit between master and HEAD for the string and
+  - <https://git-scm.com/docs/git-log#Documentation/git-log.txt--Sltstringgt>
+  - git log -Sand master..HEAD --patch
+  - --pickaxe-all
+  - --pickaxe-regex
