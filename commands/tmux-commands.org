@@ -36,3 +36,25 @@
 ** Clear history and screen
   - :clear-history
   - bind -n C-k clear-history
+  - <noprefix> C-l     # clears screen if on command line
+  - # Testing this:
+  - bind-key E send-keys "C-k" \; send-keys "C-u" \; send-keys "clear" \; send-keys "Enter" \; run-shell "sleep .3s; tmux clear-history"
+  - # Modifications
+  - bind-key E send-keys "C-l" \; send-keys "C-u" \; run-shell "sleep .3s; tmux clear-history"
+** tmux and tty
+  - :set -g window-status-format '#{pane_tty}' # show tty
+  - $ tty     # prompt know tty
+  - $ ps -o state= -o comm= -t `tty`  # processes in this tty
+
+** copy/paste from tmux scrollback
+  - <p>[      # enter scroll back mode
+  - <space>   # start highlighting
+  - move to end of text
+  - <enter>   # copy text from tmux
+  - <p>]      # paste from tmux clipboard
+*** awesome tmux copy/paste settings
+
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X copy-selection
+bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
+
