@@ -1,0 +1,9 @@
+* CBT
+**
+cells-per-column=1 # only the latest version
+count=x # limit rows
+
+** Examples in dev
+cbt read stats prefix=04520af40144d9c133ee78c5::_metric::_second::_definitionid::f75e91200044d9c10431b3d5
+
+cbt read stats prefix=04520af40144d9c133ee78c5::_metric::_year::_definitionid::f75e91200044d9c10431b3d5

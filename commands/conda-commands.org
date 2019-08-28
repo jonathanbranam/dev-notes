@@ -1,0 +1,9 @@
+* Conda / Miniconda
+** Version
+  - conda -V
+  - conda update conda
+
+** New project / environment
+  - list python versions:
+  - conda search "^python$"
+  - conda create -n yourenvname python=x.x anaconda

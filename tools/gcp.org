@@ -1,0 +1,40 @@
+* GCP
+* GCP Spark Notebook
+** First time setup
+*** Enable APIs
+*** Create a bucket for code
+  - https://console.cloud.google.com/storage/browser
+  - Notebooks will be stored in /notebooks/jupyter in the bucket
+*** Create a cluster
+  - Enable component gateway
+  - Add Anaconda and Jupyter
+  - Specify the bucket created above
+*** Open Jupyter
+  - Browse to Web Interfaces tab of the cluster
+  - Launch Jupyter
+  - Party...
+** Cluster definitions
+*** Set project
+gcloud config set project com-metacx-ml-playground
+*** Light cluster
+**** Command line v1 Spark 2.3
+gcloud beta dataproc clusters create light-cluster --enable-component-gateway --bucket spark-playground-bucket --subnet default --zone us-west1-b --master-machine-type n1-standard-4 --master-boot-disk-size 500 --num-workers 2 --worker-machine-type n1-standard-1 --worker-boot-disk-size 500 --num-preemptible-workers 2 --image-version 1.3-deb9 --optional-components ANACONDA,JUPYTER --labels env=ml-playground,role=data-exploration,project=metric-forecast,ticket=av-649 --project com-metacx-ml-playground
+  - WARNING: For PD-Standard without local SSDs, we strongly recommend
+    provisioning 1TB or larger to ensure consistently high I/O performance.
+    See https://cloud.google.com/compute/docs/disks/performance for
+    information on disk I/O performance.
+**** Command line v2 Spark 2.4
+gcloud beta dataproc clusters create light-spark --enable-component-gateway --bucket spark-playground-bucket --subnet default --zone us-west1-b --master-machine-type n1-standard-4 --master-boot-disk-size 1000 --num-workers 2 --worker-machine-type n1-standard-2 --worker-boot-disk-size 500 --num-preemptible-workers 2 --image-version 1.4-debian9 --optional-components ANACONDA,JUPYTER,ZEPPELIN --labels env=ml-playground,role=data-exploration,project=metric-forecast,ticket=av-649 --properties spark-env:spark.jars.packages=org.apache.spark:spark-avro_2.12:2.4.3 --project com-metacx-ml-playground
+*** SSH to cluster master
+gcloud beta compute --project "com-metacx-ml-playground" ssh --zone "us-west1-b" "light-spark-m"
+*** edit spark conf
+sudo vim $SPARK_HOME/conf/spark-defaults.conf
+Add:
+spark.jars.packages=org.apache.spark:spark-avro_2.12:2.4.3
+Trying:
+spark.jars.packages=org.apache.spark:spark-avro_2.11:2.4.3
+
+** Notebook setup
+*** Apache Zeppelin
+**** Edit interpreter for spark and add:
+args --packages org.apache.spark:spark-avro_2.12:2.4.3
