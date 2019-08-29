@@ -54,6 +54,7 @@
   - \_.    any character including a newline
 * Spelling
   - :setl spell   # enable spell checking
+  - :setl nospell # disable spell checking
   - zg            # add word to spellfile
   - zw            # mark as wrong spelling in spellfile
   - z=            # get suggestions
@@ -96,6 +97,8 @@
    - C-w o    # close all other windows (in current tab)
 * Formatting / Layout
   - gq        # reformat selection for line breaks
+  - set formatoptions-=t  # disable line-break on edit
+  - set formatoptions+=t  # disable line-break on edit
 * Completions
   - C-n         # next completion
   - <tab>       # next completion
