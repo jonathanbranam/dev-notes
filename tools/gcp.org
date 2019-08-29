@@ -89,3 +89,14 @@ Add:
   <value>origin</value>
   <description>Git repository remote</description>
 </property>
+*** SSH Tunnel to web interfaces
+
+  - Open an SSH tunnel
+  gcloud compute ssh light-spark-m \
+    --project=PROJECT \
+    --zone=us-west1-b -- -D 1080 -N
+  - Start an instance of Chrome with the proxy set
+
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+    --proxy-server="socks5://localhost:1080" \
+    --user-data-dir="/tmp/light-spark-m" http://light-spark-m:18080
