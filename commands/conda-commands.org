@@ -7,3 +7,11 @@
   - list python versions:
   - conda search "^python$"
   - conda create -n yourenvname python=x.x anaconda
+** Export conda settings
+  - conda env export > conda-env.yml
+  - Not sure this is exactly right:
+    - conda list --explicit > conda-packages.txt
+** Import conda environment
+  - conda env create -f conda-env.yml
+** Install from conda-forge channel
+  - conda install -c conda-forge google-cloud-storage
