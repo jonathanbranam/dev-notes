@@ -96,9 +96,10 @@
    - C-w T    # break out split into new tab
    - C-w o    # close all other windows (in current tab)
 * Formatting / Layout
-  - gq        # reformat selection for line breaks
-  - set formatoptions-=t  # disable line-break on edit
-  - set formatoptions+=t  # disable line-break on edit
+** Line breaks; wrapping long lines
+   - gq        # reformat selection for line breaks
+   - set formatoptions-=t  # disable line-break on edit
+   - set formatoptions+=t  # enable line-break on edit
 * Completions
   - C-n         # next completion
   - <tab>       # next completion
