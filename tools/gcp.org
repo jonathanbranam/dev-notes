@@ -54,7 +54,7 @@ Inside of:
 
   - /etc/zeppelin/conf/zeppelin-site.xml
 
-Replace:
+    - Replace:
   <property>
     <name>zeppelin.notebook.storage</name>
     <value>org.apache.zeppelin.notebook.repo.GitHubNotebookRepo</value>
@@ -63,12 +63,21 @@ Replace:
     </description>
   </property>
 
+    - Or (use gcs as a sort of backup/playground):
 
-Add:
+  <property>
+    <name>zeppelin.notebook.storage</name>
+    <value>org.apache.zeppelin.notebook.repo.GitHubNotebookRepo,org.apache.zeppelin.notebook.repo.GCSNotebookRepo</value>
+    <description>
+      versioned notebook persistence layer implementation
+    </description>
+  </property>
+
+    - Add:
 
 <property>
   <name>zeppelin.notebook.git.remote.url</name>
-  <value>GITHUB_URL</value>
+  <value>GITHUB_HTTPS_URL</value>
   <description>remote Git repository URL</description>
 </property>
 
@@ -89,14 +98,21 @@ Add:
   <value>origin</value>
   <description>Git repository remote</description>
 </property>
+**** Restart zeppelin
+sudo service zeppelin stop
+sudo service zeppelin start
+# 2019-09-09 I had to blow away the notebook folder:
+sudo rm -rf /var/lib/zeppelin/notebook
 *** SSH Tunnel to web interfaces
-
   - Open an SSH tunnel
   gcloud compute ssh light-spark-m \
     --project=PROJECT \
     --zone=us-west1-b -- -D 1080 -N
   - Start an instance of Chrome with the proxy set
-
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
     --proxy-server="socks5://localhost:1080" \
     --user-data-dir="/tmp/light-spark-m" http://light-spark-m:18080
+  - Link to Zeppelin
+    - http://light-spark-m:8080/#/
+  - Spark History Server
+    - http://light-spark-m:18080/
