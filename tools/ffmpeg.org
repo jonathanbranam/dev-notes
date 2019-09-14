@@ -1,0 +1,5 @@
+* FFMPEG commands
+** add srt to mp4
+ffmpeg -i input.mp4 -i input.srt -c copy -c:s mov_text output.mp4
+** delay audio to syncronize
+ffmpeg -i input.mp4 -itsoffset 1.250 -i input.mp4 -map 0:0 -map 1:1 -acodec copy -vcodec copy output.mp4
