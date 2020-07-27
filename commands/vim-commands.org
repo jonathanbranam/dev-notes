@@ -17,7 +17,7 @@
   - :bw#      # wipeout other buffer
   - maybe try this plugin: https://github.com/moll/vim-bbye
 * Moving around
-** Screen position
+** Screen position / scrolling
   - zt        # current line to top
   - zz        # current line to middle
   - zb        # current line to bottom

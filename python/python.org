@@ -2,3 +2,15 @@
 ** List methods
 dir(object)
 
+** Locally develop with packages
+# This package adds the putup command into our environment which we use to create a Python package with:
+#conda install -c conda-forge pyscaffold
+pip install pyscaffold
+
+putup boston_housing
+# Now we can change into the new boston_housing directory and install the package inside our environment in development mode:
+
+# Within your venv
+python setup.py develop
+
+# Q? How to do this in a cloud function deployment?
