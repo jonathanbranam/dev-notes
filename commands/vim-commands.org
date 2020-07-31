@@ -114,7 +114,6 @@
   - ds"         # delete surround "
   - ysiw]       # add ] arround iw word
   - ysiw[       # add [  ] with space
-
 * changing case
   - crs         # to snake_case
   - crm         # to MakedCase
@@ -124,6 +123,31 @@
   - cr.         # to dot.case
   - cr<space>   # to space case
   - crt         # to Title Case
+* Running external commands
+  - filter commands:
+    https://vim.fandom.com/wiki/Use_filter_commands_to_process_text
+  - :.w !python -m json.tool    # format current line to JSON
+  - :%!python -m json.tool      # format entire JSON file
+  - :'<,'>!python -m json.tool  # hit ! in visual mode to send the highlighted
+    # lines text to an external program and have the output replace the lines
+  - :'a,'b!python -m json.tool  # filter lines from mark a to b
+  - '<,'>!python -c "import json, sys; print json.dumps(json.load(sys.stdin), indent=2)"
+    # two space indent
+  - for JSON consider installing jq: <https://stedolan.github.io/jq/manual/>
+  - test JSON:
+[
+{ "hi": 3, "there": [1,2,3] },
+{ "hi": 3, "there": [1,2,3] },
+{ "hi": 3, "there": [1,2,3] }
+]
+  - :r !ls        # paste results of external command into the buffer
+  - :0r !ls       # paste results before first line of file (after line 0)
+  - :-r !ls       # paste results before the current line
+  - :.-3r !ls     # paste results 3 lines earlier
+  - :.+3r !ls     # paste results 3 lines later
+
+
+
 * Searching, errors, and opening
 ** How to search using the quickfix list?
 ** How to find errors
@@ -270,14 +294,8 @@
 * Vim resources
 ** Overall tips
    - <https://www.cs.oberlin.edu/~kuperman/help/vim/home.html>
+   - <https://learnvimscriptthehardway.stevelosh.com/>
 ** Grep and search
    - https://robots.thoughtbot.com/faster-grepping-in-vim
    - https://seesparkbox.com/foundry/demystifying_multi_file_searches_in_vim_and_the_command_line
-
-
-
-
-
-
-
 
