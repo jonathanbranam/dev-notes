@@ -14,7 +14,11 @@
    - ,        # name window
    - f        # find window
    - &        # kill window
-   - .        # move window
+   - .        # move window (to an empty index)
+   - :swap-window -t -1; select-window -t -1   # move window left and select
+   - :swap-window -t +1; select-window -t +1   # move window right and select
+   - :swap-window -d -t -1      # move window left and select
+   - :swap-window -d -t +1      # move window right and select
 ** Moving between panes
    - hjkl           # vim movements
    - :selectpane n  # select pane n
@@ -27,7 +31,11 @@
    - +              # break pane into window (working?)
    - -              # restore pane from window (working?)
 ** Sizing panes
+   - M-<direction>  # resize by 5
+   - C-<direction>  # resize by 1 - blocked by OS X
    - :resize-pane -UDLR n
+** Key bindings
+   - ?              # list all key bindings
 ** Manual pane command
    - Move to a spanning horizontal pane at the top
     :split-window -vfb  # create new spanning pane above this one

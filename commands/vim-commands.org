@@ -100,6 +100,11 @@
    - gq        # reformat selection for line breaks
    - set formatoptions-=t  # disable line-break on edit
    - set formatoptions+=t  # enable line-break on edit
+   - an indent list like this always seems to line-break on the first line,
+     regardless of the setting of formatoptions. I don't care enough to find
+     out if there is a fix for that.
+   - :nnoremap <Leader>w :set formatoptions-=t
+   - :nnoremap <Leader>W :set formatoptions+=t
 * Completions
   - C-n         # next completion
   - <tab>       # next completion

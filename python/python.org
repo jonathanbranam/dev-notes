@@ -14,3 +14,16 @@ putup boston_housing
 python setup.py develop
 
 # Q? How to do this in a cloud function deployment?
+** Setup a new project
+
+# Decide on a python version
+
+pyenv versions
+
+pyenv local 3.8.5
+
+# Create a new venv for the project
+python -m venv ./.venv --prompt proj-name
+
+# Activate venv
+source ./.venv/bin/activate

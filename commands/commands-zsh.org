@@ -1,0 +1,21 @@
+* Zsh
+** Key bindings
+  - list key bindings
+bindkey
+  - list key binding modes?
+  - list of widgets
+man zshzle
+# then search for WIDGETS
+  - list all registered zsh commands (same as WIDGETS?)
+zsh -al
+  - show translation of key in terminal:
+Press <ctrl-V> then the key
+  - show mapping for key
+bindkey -M <keymap>
+  - Bind string (not command / widget)
+bindkey -s
+** List of some key bindings
+  - OA    up-arrow
+  - OB    down-arrow
+  - OD    left-arrow
+  - OC    right-arrow

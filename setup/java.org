@@ -1,0 +1,23 @@
+* Java
+** OpenJDK
+brew tap AdoptOpenJDK/openjdk
+brew cask install adoptopenjdk8
+# brew cask install adoptopenjdk14
+
+brew install maven
+
+# Add to zshrc
+
+jdk() {
+  if [ $# -eq 0 ]; then
+    /usr/libexec/java_home -V
+  else
+    version=$1
+    export JAVA_HOME=$(/usr/libexec/java_home -v"$version") &> /dev/null
+    java -version
+  fi
+}
+
+# then:
+jdk 1.8
+jdk 14

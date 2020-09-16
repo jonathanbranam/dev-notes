@@ -1,0 +1,10 @@
+* AWS Commands
+** DynamoDB
+  - list all tables
+aws dynamodb list-tables
+  - aws dynamodb list-tables                          # list all tables
+  - aws dynamodb describe-table --table-name <table>  # list all tables
+  - aws dynamodb scan --table-name <table> --max-items=10  # scan 10 items
+  - filter respose on certain attributes
+aws dynamodb scan --table-name <table> --max-items=10  \
+  --projection-expression "id,otherField"
