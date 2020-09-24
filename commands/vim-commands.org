@@ -29,6 +29,9 @@
   - H         # move cursor to top
   - M         # move cursor to middle
   - L         # move cursor to bottom (last line)
+* Vim command line editing
+  - q:        # open command line history like a buffer, CR to execute
+  - :<C-f>    # Ctrl-F while in command line opens buffer
 * Search & Replace
 ** Highlighting
   - :noh      # cancel search highlight
@@ -39,13 +42,26 @@
   - :%s/search/replace/g        # entire file, all matches
   - :8,10 s/search/replace/g    # lines 8-10, all matches
   - :%s/search/replace/gc       # ask for confirmation
+  - :%s/search//n       # count number of matches
+  - :%s/search//gn      # count number of matches including inline
+  - :%s/C-r"///n       # count number of matches
+** Se
 ** Regexp
+*** Magic setting
+  - /\v       # turns on "very magic" mode
+  - TODO: Research better magic settings:
+    - https://vim.fandom.com/wiki/Simplifying_regular_expressions_using_magic_and_no-magic
+    - https://www.vim.org/scripts/script.php?script_id=4849
+    - https://stackoverflow.com/questions/3760444/in-vim-is-there-a-way-to-set-very-magic-permanently-and-globally
+*** Lookahead and lookbehind
   - \@=       # positive lookahead
   - \@!       # negative lookahead
   - \@<=      # positive lookbehind
   - \@<!      # negative lookbehind
   - :\@<!math   # all math not preceded by :
   - pane\>\@!   # pane not followed by a word break
+  - examples:
+  - \(private \)\@<!val \w* = spark
 ** Multiline search
   - \n    a newline character (line ending)
   - \_s    a whitespace (space or tab) or newline character
@@ -63,6 +79,32 @@
   - [s            # prev misspelled word
   - zug           # remove word from spellfile
   - zuw           # remove wrong spelling
+* Yank and delete
+  - p             # paste after current location
+  - P             # paste at current location
+  - gp            # paste after current location, cursor at end
+  - gP            # paste at current location, cursor at end
+  - :pu           # put text linewise (handy for copying parts of lines)
+  - [p            # paste using current indent before this line
+  - ]p            # paste using current indent after this line
+  - v<move>p      # replace selected text
+  - v<move>"0p    # replace selected text with most recent yank
+  - v<move>".p    # replace selected text with most inserted text
+* Yank and delete registers
+  - :reg          # list contents of all registers
+  - ""            # default / unnamed register
+  - "0            # the most recent yank
+  - "1-9          # deleted text: 1 newest
+  - "-            # small delete register (less than a line)
+  - "*            # system clipboard
+  - "+            # system clipboard
+  - "/            # most recent search
+  - ".            # most recent inserted text <- amazing!
+  - "=            # expression: will insert results of an expression
+  - "_            # black hole register
+  - "%            # name of the current file: commands/vim-commands.org
+  - "#            # name of the alternate file:
+                  # /Users/jbranam/work/dev-notes/commands/commands-zsh.org
 * Vim splits
 ** Open/Close
    - C-w q # Close current window

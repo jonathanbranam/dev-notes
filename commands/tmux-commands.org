@@ -19,6 +19,10 @@
    - :swap-window -t +1; select-window -t +1   # move window right and select
    - :swap-window -d -t -1      # move window left and select
    - :swap-window -d -t +1      # move window right and select
+   - bind-key . command-prompt "swap-window -d -t '%%'"
+   - Bindings: Shift-Left/Right to move window
+   - bind-key -r S-Left swap-window -d -t -1
+   - bind-key -r S-Right swap-window -d -t +1
 ** Moving between panes
    - hjkl           # vim movements
    - :selectpane n  # select pane n
@@ -36,6 +40,8 @@
    - :resize-pane -UDLR n
 ** Key bindings
    - ?              # list all key bindings
+   - :list-keys     # shows the actual bind commands
+   - bind-key -r    # allow key to be repeated
 ** Manual pane command
    - Move to a spanning horizontal pane at the top
     :split-window -vfb  # create new spanning pane above this one

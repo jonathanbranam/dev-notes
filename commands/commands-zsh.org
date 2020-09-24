@@ -7,7 +7,7 @@ bindkey
 man zshzle
 # then search for WIDGETS
   - list all registered zsh commands (same as WIDGETS?)
-zsh -al
+zle -al
   - show translation of key in terminal:
 Press <ctrl-V> then the key
   - show mapping for key
