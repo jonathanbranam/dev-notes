@@ -29,6 +29,17 @@
   - H         # move cursor to top
   - M         # move cursor to middle
   - L         # move cursor to bottom (last line)
+* Using the help system
+  - C-]             # follow a hyperlink
+  - C-T             # go back in hyperlink history
+  - :h <topic>      # jump to help topic
+  - :set wildmen    # help complete on the help command
+* Editing lines
+** Joining
+  - J         # join with a space
+  - gJ        # join without changing spacing (includes indent)
+  - '[        # mark set at end of first joined line
+  - ['        # mark set at end of the resulting line
 * Vim command line editing
   - q:        # open command line history like a buffer, CR to execute
   - :<C-f>    # Ctrl-F while in command line opens buffer
@@ -90,6 +101,11 @@
   - v<move>p      # replace selected text
   - v<move>"0p    # replace selected text with most recent yank
   - v<move>".p    # replace selected text with most inserted text
+* Selection
+  - v             # character based selection
+  - V             # line based selection
+  - C-v           # block based selection
+  - gv            # repeat previous selection
 * Yank and delete registers
   - :reg          # list contents of all registers
   - ""            # default / unnamed register
@@ -192,11 +208,37 @@
   - :-r !ls       # paste results before the current line
   - :.-3r !ls     # paste results 3 lines earlier
   - :.+3r !ls     # paste results 3 lines later
-
-
-
+* Mappings from tpope/vim-unimpaired
+** Movement pairs
+  - ]q            # next from quicklist :cnext
+  - [q            # prev from quicklist :cprev
+  - ]a            # next file :next
+  - [a            # prev file :bprevious
+  - ]f            # next file in directory
+  - [f            # prev file in directory
+  - ]n            # next SCM conflict marker
+  - [n            # prev SCM conflict marker
+** Editing pairs
+  - ]<Space>      # add newline after current line (don't enter edit mode)
+  - [<Space>      # add newline before current line (don't enter edit mode)
+  - [e ]e         # exchange current line with prev/next line
+  - =p =P         # paste linewise, reindent
+  - >p >P         # paste linewise, increase indent
+  - <p <P         # paste linewise, decrease indent
+  - ]p ]P [p [P   # paste linewise, normal indent behavior
+** Other pairs
+  - ]os           # :set spell
+  - [os           # :set nospell
+  - yos           # :set invspell
+  - [x ]x         # encode/decode XML
+  - [u ]u         # encode/decode URLs
+  - [y ]y         # encode/decode C-style strings
 * Searching, errors, and opening
-** How to search using the quickfix list?
+** Next in quickfix
+  - ]q            # next from quicklist
+  - :cnext        # same
+  - [q            # prev from quicklist
+  - :cprev        # same
 ** How to find errors
 * NetRW
 ** To open netrw
@@ -345,4 +387,5 @@
 ** Grep and search
    - https://robots.thoughtbot.com/faster-grepping-in-vim
    - https://seesparkbox.com/foundry/demystifying_multi_file_searches_in_vim_and_the_command_line
-
+** Tutorials
+  - http://derekwyatt.org/vim/tutorials/novice/
