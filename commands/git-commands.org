@@ -5,3 +5,41 @@ Search the diff of every commit between master and HEAD for the string and
   - git log -Sand master..HEAD --patch
   - --pickaxe-all
   - --pickaxe-regex
+** Git setup for multiple accounts on github
+  - <https://blog.bitsrc.io/how-to-use-multiple-git-accounts-378ead121235>
+  - <https://www.freecodecamp.org/news/manage-multiple-github-accounts-the-ssh-way-2dadc30ccaca/>
+  - <https://medium.com/the-andela-way/a-practical-guide-to-managing-multiple-github-accounts-8e7970c8fd46>
+*** Option A: different github url for every repo
+# Personal account - default config
+Host github.com-personal
+   HostName github.com
+   User git
+   IdentityFile ~/.ssh/id_rsa_personal
+# Work account
+Host github.com-work
+   HostName github.com
+   User git
+   IdentityFile ~/.ssh/id_rsa_work
+*** Option B: make one account the default
+# Personal account, - the default config
+Host github.com
+   HostName github.com
+   User git
+   IdentityFile ~/.ssh/id_rsa
+   
+# Work account-1
+Host github.com-work_user1    
+   HostName github.com
+   User git
+   IdentityFile ~/.ssh/id_rsa_work_user1
+*** SSH add both
+ssh-add ~/.ssh/id_ra
+ssh-add ~/.ssh/id_ra.github-personal
+*** Global gitconfig with custom
+[user]
+    name = John Doe
+    email = johndoe@domain.com
+[includeIf "gitdir:~/work/"]
+    path = ~/work/.gitconfig
+*** Fix urls if necessary
+git remote origin set-url git@github.com-work:Abhay07/repository-name.git
