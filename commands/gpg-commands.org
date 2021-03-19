@@ -1,0 +1,2 @@
+* Fix GPG when it hangs or doesn't work
+gpgconf --kill gpg-agent
