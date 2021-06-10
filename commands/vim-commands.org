@@ -16,6 +16,12 @@
   - :bd#      # delete other buffer
   - :bw#      # wipeout other buffer
   - maybe try this plugin: https://github.com/moll/vim-bbye
+* Mapping commands
+  - :map            # show all current mappings
+  - :enew|pu=execute("map")   # pipe output of map to new buffer
+  - :redir @a       # pipe output of map to @a
+    :map
+    :redir END
 * Moving around
 ** Screen position / scrolling
   - zt        # current line to top
@@ -282,8 +288,28 @@
 ** Open file under cursor
   - gf      # open file under cursor; won't open missing file
   - gl      # open file/link under cursor; will open missing file utl.vim
-** Copy filename and line number to system clipboard
-   - :let @+=expand("%") . ':' . line(".")
+** Filename modifiers
+  - help filename-modifiers
+** Copy filenames, paths, and filepaths
+*** Mappings to copy filenames
+  - # copy relative filepath to system clipboard
+  - nnoremap <leader>cf :let @+=expand("%")<CR>
+  - # copy absolute filepath to system clipboard
+  - nnoremap <leader>cF :let @+=expand("%:p")<CR>
+  - # copy filename
+  - nnoremap <leader>ct :let @+=expand("%:t")<CR>
+*** Copy current filename to system clipboard (relative)
+  - :let @+=expand("%")
+*** Copy current path to system clipboard (relative)
+  - :let @+=expand("%:h")
+*** Copy filename and line number to system clipboard (relative)
+  - :let @+=expand("%") . ':' . line(".")
+*** Copy current filename to system clipboard (absolute)
+  - :let @+=expand("%:p")
+*** Copy current path to system clipboard (absolute)
+  - :let @+=expand("%:p:h")
+*** Copy current filename to system clipboard (short
+  - :let @+=expand("%:t")
 * How to work with files in VIM
 ** :set hidden
       If you don't have this set already, then do so. It makes vim work like every
