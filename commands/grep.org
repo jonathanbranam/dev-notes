@@ -1,0 +1,6 @@
+* Grep
+* Rg - ripgrep
+** Search in files:
+  - -g option supports gitignore patterns
+  - search in all tf files ignore node_modules
+rg 'run-task' -g '**/*.tf' -g '!node_modules'
