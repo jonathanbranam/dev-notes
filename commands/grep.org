@@ -1,4 +1,7 @@
 * Grep
+** Search in files:
+  - grep matching files
+grep -rn "some thing to grep" --include=\*.{module,inc,php,js,css,html,htm} ./
 * Rg - ripgrep
 ** Search in files:
   - -g option supports gitignore patterns
