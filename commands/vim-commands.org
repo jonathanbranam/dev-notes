@@ -49,6 +49,9 @@
 * Vim command line editing
   - q:        # open command line history like a buffer, CR to execute
   - :<C-f>    # Ctrl-F while in command line opens buffer
+* Run vim normal mode command in insert mode
+  - <C-O>command    # in insert mode
+  - <C-O>,si        # Insert timestamp at cursor, eg: [2021-12-31 Fri 11:23]
 * Search & Replace
 ** Highlighting
   - :noh      # cancel search highlight
