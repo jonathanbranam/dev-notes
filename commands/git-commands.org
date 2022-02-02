@@ -43,3 +43,15 @@ ssh-add ~/.ssh/id_ra.github-personal
     path = ~/work/.gitconfig
 *** Fix urls if necessary
 git remote origin set-url git@github.com-work:Abhay07/repository-name.git
+** Git stash
+*** Stash all unstaged and untracked files
+git stash push --keep-index --include-untracked -- $(git ls-files --modified --others --exclude-standard)
+*** Stash only staged files
+git stash push --include-untracked -- $(git diff --staged --diff-filter=d --name-only)
+*** Stashing only unstaged (not untracked) files
+git stash push --keep-index -- $(git diff --diff-filter=d --name-only)
+** Git list files
+*** List unstaged / untracked files
+git ls-files --modified --others --exclude-standard
+*** List unstaged (without deleted) files
+git diff --diff-filter=d --name-only
