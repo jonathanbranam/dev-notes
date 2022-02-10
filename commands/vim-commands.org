@@ -65,7 +65,8 @@
   - :%s/search//n       # count number of matches
   - :%s/search//gn      # count number of matches including inline
   - :%s/C-r"///n       # count number of matches
-** Se
+** Search and Replace across open buffers
+  - :bufdo %s/a whale/a bowl of petunias/gce
 ** Regexp
 *** Magic setting
   - /\v       # turns on "very magic" mode
