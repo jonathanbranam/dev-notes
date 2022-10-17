@@ -67,6 +67,14 @@
   - :%s/C-r"///n       # count number of matches
 ** Search and Replace across open buffers
   - :bufdo %s/a whale/a bowl of petunias/gce
+** Search and Replace across files in quicklist
+  - https://vim.fandom.com/wiki/Search_and_replace_in_multiple_buffers
+  - # First, do a search in any way
+  - :Rg 'a whale'
+  - :grep 'a whale'
+  - :cdo %s/a whale/a bowl of petunias/ge
+  - # Save after changing
+  - :cdo %S/a whale/a bowl of petunias/ge | update
 ** Regexp
 *** Magic setting
   - /\v       # turns on "very magic" mode
