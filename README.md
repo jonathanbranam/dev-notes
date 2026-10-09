@@ -8,3 +8,6 @@ Lists of commands or shortcuts for various programs
 
 ## Setup
 Some notes on my setup so I can remember and repeat
+
+## Claude
+Claude Code setup notes: see [claude/](claude/README.md)
